@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyGames.Context;
+using MyGames.Repositories;
+using MyGames.Repositories.Interfaces;
 
 namespace MyGames;
 public class Startup
@@ -15,6 +17,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        services.AddTransient<IGameRepository, GameRepository>();
+        services.AddTransient<IGenderRepository, GenderRepository>();
+
         services.AddControllersWithViews();
     }
 
