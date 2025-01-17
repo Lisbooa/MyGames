@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MyGames.Models.Game>
+
+<div>
+    <h2 style="text-align: center">Todos os Jogos</h2>
+</div>
+
+@foreach (var game in Model)
+{
+    <div>
+        <h2>@game.Name</h2>
+        <p> <img src="@Url.Content(game.ImageThumbnailUrl)" alt="Imagem do jogo @game.Name" style="max-width: 100%; height: auto;" /> </p>
+        <h4>Preço: @game.Price.ToString("c")</h4>
+    </div>
+}
