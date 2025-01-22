@@ -1,14 +1,22 @@
-﻿@model IEnumerable<MyGames.Models.Game>
+﻿@model GameListViewModel
 
 <div>
-    <h2 style="text-align: center">Todos os Jogos</h2>
+    <h2 style="text-align: center; margin-bottom:10px">@Model.CurrentGenre</h2>
 </div>
 
-@foreach (var game in Model)
-{
-    <div>
-        <h2>@game.Name</h2>
-        <p> <img src="@Url.Content(game.ImageThumbnailUrl)" alt="Imagem do jogo @game.Name" style="max-width: 100%; height: auto;" /> </p>
-        <h4>Preço: @game.Price.ToString("c")</h4>
-    </div>
-}
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    @foreach (var game in Model.Games)
+    {
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <img src="@game.ImageThumbnailUrl" class="card-img-top" style="height:200px; object-fit:cover; width:100%" alt="Thumbnail do jogo @game.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@game.Name</h5>
+                    <p class="card-text">@game.ShortDescription</p>
+                    <a href="#" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyGames.Repositories.Interfaces;
+using MyGames.ViewModels;
 
 namespace MyGames.Controllers
 {
@@ -14,8 +15,13 @@ namespace MyGames.Controllers
 
         public IActionResult List()
         {
-            var games = _gameRepository.Games;
-            return View(games);
+            //var games = _gameRepository.Games;
+            //return View(games);
+            var gamesListViewModel = new GameListViewModel();
+            gamesListViewModel.Games = _gameRepository.Games;
+            gamesListViewModel.CurrentGenre = "Current Genre";
+
+            return View(gamesListViewModel);
         }
     }
 }
