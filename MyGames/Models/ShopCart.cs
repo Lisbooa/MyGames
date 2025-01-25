@@ -34,5 +34,27 @@ namespace MyGames.Models
                ShopCartId = shopcartId,
             };
         }
+
+        public void AddToShopCart(Game game)
+        {
+            var shopCartItem = _context.ShopCartItems.SingleOrDefault(
+                s => s.Game.GameId == game.GameId && s.ShopCartId == ShopCartId);
+
+            if (shopCartItem == null)
+            {
+                shopCartItem = new ShopCartItem
+                {
+                    ShopCartId = ShopCartId,
+                    Game = game,
+                    Amount = 1
+                };
+                _context.ShopCartItems.Add(shopCartItem);
+            }
+            else 
+            {
+                shopCartItem.Amount++;
+            }
+            _context.SaveChanges();
+        }
     }
 }
