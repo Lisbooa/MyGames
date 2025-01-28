@@ -1,4 +1,5 @@
-﻿using MyGames.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MyGames.Context;
 
 namespace MyGames.Models
 {
@@ -79,6 +80,13 @@ namespace MyGames.Models
             }
             _context.SaveChanges();
             return localAmount;
+        }
+
+        public List<ShopCartItem> GetShopCartItems()
+        {
+            return ShopCartItems ?? (ShopCartItems = _context.ShopCartItems
+                .Where(s => s.ShopCartId == ShopCartId)
+                .Include(g => g.Game).ToList());
         }
     }
 }
