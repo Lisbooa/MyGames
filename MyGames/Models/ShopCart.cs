@@ -88,5 +88,12 @@ namespace MyGames.Models
                 .Where(s => s.ShopCartId == ShopCartId)
                 .Include(g => g.Game).ToList());
         }
+
+        public void CleanShopCart() 
+        {
+            var shopCartItems = _context.ShopCartItems.Where(s => s.ShopCartId == ShopCartId);
+            _context.ShopCartItems.RemoveRange(shopCartItems);
+            _context.SaveChanges();
+        }
     }
 }
