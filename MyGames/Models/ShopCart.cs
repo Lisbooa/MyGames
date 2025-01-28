@@ -95,5 +95,14 @@ namespace MyGames.Models
             _context.ShopCartItems.RemoveRange(shopCartItems);
             _context.SaveChanges();
         }
+
+        public decimal GetShopCartTotal()
+        {
+            var total = _context.ShopCartItems
+                .Where(s => s.ShopCartId == ShopCartId)
+                .Select(g => g.Game.Price * g.Amount).Sum();
+
+            return total;
+        }
     }
 }
