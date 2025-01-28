@@ -14,7 +14,7 @@ namespace MyGames.Models
         public string ShopCartId { get; set; }
         public List<ShopCartItem> ShopCartItems { get; set; }
 
-        public static ShopCart GetShopCart(IServiceProvider services) 
+        public static ShopCart GetShopCart(IServiceProvider services)
         {
             //Define a session
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
@@ -29,9 +29,9 @@ namespace MyGames.Models
             session.SetString("ShopCartId", shopcartId);
 
             //Return the ShopCart with context and ID assigned or obtained
-            return new ShopCart(context) 
+            return new ShopCart(context)
             {
-               ShopCartId = shopcartId,
+                ShopCartId = shopcartId,
             };
         }
 
@@ -50,11 +50,35 @@ namespace MyGames.Models
                 };
                 _context.ShopCartItems.Add(shopCartItem);
             }
-            else 
+            else
             {
                 shopCartItem.Amount++;
             }
             _context.SaveChanges();
+        }
+
+        public int RemoveFromShopCart(Game game)
+        {
+            var shopCartItem = _context.ShopCartItems.SingleOrDefault(
+                s => s.Game.GameId == game.GameId && s.ShopCartId == ShopCartId);
+
+            int localAmount = 0;
+
+            if(shopCartItem != null)
+            {
+                if (shopCartItem.Amount > 1) 
+                {
+                    shopCartItem.Amount--;
+                    localAmount = shopCartItem.Amount;
+                }
+
+                else
+                {
+                    _context.ShopCartItems.Remove(shopCartItem);
+                }
+            }
+            _context.SaveChanges();
+            return localAmount;
         }
     }
 }
