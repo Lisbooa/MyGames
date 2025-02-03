@@ -103,6 +103,7 @@ namespace MyGames.Models
                 .Select(g => g.Game.Price * g.Amount).Sum();
 
             return total;
+
         }
     }
 }

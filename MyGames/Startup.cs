@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyGames.Context;
+using MyGames.Models;
 using MyGames.Repositories;
 using MyGames.Repositories.Interfaces;
 
@@ -19,6 +20,7 @@ public class Startup
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         services.AddTransient<IGameRepository, GameRepository>();
         services.AddTransient<IGenderRepository, GenderRepository>();
+        services.AddScoped(sp => ShopCart.GetShopCart(sp));
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
