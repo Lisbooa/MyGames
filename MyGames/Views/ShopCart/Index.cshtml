@@ -1,0 +1,62 @@
+﻿@model ShopCartViewModel
+
+<div class="container">
+    <div class="row">
+        <img src="~/images/carrinho-de-compras.png"/>
+
+        <div>
+            <h4>
+                Seu carrinho de compras :
+            </h4>
+        </div>
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Quantidade</th>
+                    <th>Game</th>
+                    <th class="text-right">Preço</th>
+                    <th class="text-right">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.ShopCart.ShopCartItems)
+                {
+                    <tr>
+                        <td class="text-center">@item.Amount</td>
+                        <td class="text-left">@item.Game.Name</td>
+                        <td class="text-right">@item.Game.Price.ToString("c")</td>
+                        <td class="text-right">
+                            @((item.Amount * @item.Game.Price).ToString("c"))
+                        </td>
+                        <td class="text-center">
+                            <a asp-controller="ShopCart" asp-action="RemoveItemFromShopCart" asp-route-gameId="@item.Game.GameId">
+                                <img src="~/images/remover.png"/>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.ShopCartTotal.ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-right">
+            <div class="btn-group">
+                <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Encerrar Pedido</a>
+                &nbsp;&nbsp;&nbsp;
+                <a class=" btn btn-primary" asp-controller="Game" asp-action="List">Continuar Comprando</a>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
