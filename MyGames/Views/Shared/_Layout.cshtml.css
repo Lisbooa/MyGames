@@ -7,7 +7,13 @@ a.navbar-brand {
   word-break: break-all;
 
 }
+.nav-hover {
+    transition: color 0.3s ease-in-out;
+}
 
+.nav-hover:hover {
+    color: #ffcc00 !important; /* Cor dourada no hover */
+}
 
 a {
   color: #0077cc;
