@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyGames.Context;
 using MyGames.Models;
 using MyGames.Repositories;
@@ -54,6 +55,11 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapControllerRoute(
+                name: "genderFilter",
+                pattern: "Game/{action}/{genre?}",
+                defaults: new {controller = "Game", action = "List"});
+
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
