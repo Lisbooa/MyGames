@@ -50,6 +50,6 @@ namespace MyGames.Models
         public bool Available { get; set; }
 
         public int GenderId { get; set; }
-        public virtual Gender Gender { get; set; }
+        public virtual Genre Gender { get; set; }
     }
 }

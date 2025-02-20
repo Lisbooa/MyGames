@@ -20,7 +20,7 @@ public class Startup
     {
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         services.AddTransient<IGameRepository, GameRepository>();
-        services.AddTransient<IGenderRepository, GenderRepository>();
+        services.AddTransient<IGenreRepository, GenderRepository>();
         services.AddScoped(sp => ShopCart.GetShopCart(sp));
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

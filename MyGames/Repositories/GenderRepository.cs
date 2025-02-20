@@ -4,7 +4,7 @@ using MyGames.Repositories.Interfaces;
 
 namespace MyGames.Repositories
 {
-    public class GenderRepository : IGenderRepository
+    public class GenderRepository : IGenreRepository
     {
         private readonly AppDbContext _context;
 
@@ -13,6 +13,6 @@ namespace MyGames.Repositories
             _context = context;
         }
 
-        public IEnumerable<Gender> Genders => _context.Genders;
+        public IEnumerable<Genre> Genders => _context.Genders;
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MyGames.Models
 {
     [Table("Genders")]
-    public class Gender
+    public class Genre
     {
         [Key]
         public int GenderId { get; set; }

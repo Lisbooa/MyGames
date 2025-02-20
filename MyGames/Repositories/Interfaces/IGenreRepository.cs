@@ -2,8 +2,8 @@
 
 namespace MyGames.Repositories.Interfaces
 {
-    public interface IGenderRepository
+    public interface IGenreRepository
     {
-        IEnumerable<Gender> Genders { get; }
+        IEnumerable<Genre> Genders { get; }
     }
 }

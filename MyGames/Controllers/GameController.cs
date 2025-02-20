@@ -16,10 +16,6 @@ namespace MyGames.Controllers
 
         public IActionResult List(string genre)
         {
-            //var gamesListViewModel = new GameListViewModel();
-            //gamesListViewModel.Games = _gameRepository.Games;
-            //gamesListViewModel.CurrentGenre = "Current Genre";
-
             IEnumerable<Game> games;
             string currentGenre = string.Empty;
 

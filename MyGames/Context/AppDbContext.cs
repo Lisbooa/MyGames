@@ -10,7 +10,7 @@ namespace MyGames.Context
         {
         }
 
-        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Genre> Genders { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<ShopCartItem> ShopCartItems { get; set; }
     }
