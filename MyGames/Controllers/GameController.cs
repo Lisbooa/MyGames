@@ -26,14 +26,7 @@ namespace MyGames.Controllers
             }
             else 
             {
-                if (string.Equals("Aventura", genre, StringComparison.OrdinalIgnoreCase))
-                {
-                    games = _gameRepository.Games.Where(g => g.Gender.GenderName.Equals("Aventura")).OrderBy(g => g.Name);
-                }
-                else 
-                {
-                    games = _gameRepository.Games.Where(g => g.Gender.GenderName.Equals("Terror de Sobrevivência")).OrderBy(g => g.Name);
-                }
+                games = _gameRepository.Games.Where(g => g.Gender.GenderName.Equals(genre)).OrderBy(g => g.Name);
             }
             var gamesListViewModel = new GameListViewModel
             {
