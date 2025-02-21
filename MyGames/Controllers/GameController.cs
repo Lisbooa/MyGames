@@ -36,5 +36,11 @@ namespace MyGames.Controllers
 
             return View(gamesListViewModel);
         }
+
+        public IActionResult Details(int gameId)
+        {
+            var game = _gameRepository.Games.FirstOrDefault(g => g.GameId == gameId);
+            return View(game);
+        }
     }
 }
