@@ -1,22 +1,35 @@
-﻿<div class="container">
-    <img src="~/images/faleconosco1.jpg" alt="Fale conosco" />
-    <div class="jumbotron">
-        <h3>Queremos ouvir o que você tem a dizer</h3>
-        <p>
-            <span>
-                <img src="~/images/Envelope-icon24.png" />
-            </span>
-            <h5><email address="laevertonlisboa@gmail.com" content="Envie um e-mail"></email></h5>
-            <br />
-            <span>
-                <img src="~/images/phone-app-icon.png" />
-            </span>
-            <h5>(83) 9876-5432</h5>
-            <br />
-            <span>
-                <img src="~/images/Home-iconred.png" />
-            </span>
-            <h5>Av. Rua nova 159 - 01234-567 - João Pessoa</h5>
-        </p>
+﻿@model ContactViewModel
+
+@{
+    ViewData["Title"] = "Página de contato";
+}
+
+@if (ViewData["Message"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Message"]
     </div>
-</div>
+}
+<form method="post" asp-controller="Contact" asp-action="SendContact" autocomplete="off">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" type="text" class="form-control" id="formGroupExampleInput" placeholder="Insira seu nome">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email" class="form-control" id="formGroupExampleInput2" placeholder="Insira seu e-mail">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Message" class="form-label"></label>
+        <textarea asp-for="Message" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Digite aqui..."></textarea>
+        <span asp-validation-for="Message" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Enviar" />
+</form>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

@@ -13,5 +13,7 @@ namespace MyGames.Context
         public DbSet<Genre> Genders { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<ShopCartItem> ShopCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }
